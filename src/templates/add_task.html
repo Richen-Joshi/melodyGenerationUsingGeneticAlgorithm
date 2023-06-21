@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+  .form-group{
+    width:40vw;
+    margin:0 auto;
+    }
+  h1{
+    display:block;
+    margin:20px auto;
+    width:40vw;
+    
+  }
+
+  .submit{
+    margin-top:10px;
+  }
+
+  </style>
+<h1>{% block title %} Enter the Info{% endblock %}</h1>
+
+<form method="post" action = "/result">
+  <div class="form-group">
+    <input type="hidden" name="check" value="0">
+    <label for="nbar">No of bars : [8]</label>
+    <input type="text" name="nbar" placeholder="" class="form-control"
+      value="{{ request.form['nbar'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="notes">Notes per bar: [4]:</label>
+    <input type="text" name="notes" placeholder="" class="form-control"
+      value="{{ request.form['notes'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="nsteps">Number of steps: [1]:</label>
+    <input type="text" name="nsteps" placeholder="" class="form-control"
+      value="{{ request.form['nsteps'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="pause">Introduce Pauses? [True]:</label>
+    <input type="text" name="pause" placeholder="" class="form-control"
+      value="{{ request.form['pause'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="key">Key:</label>
+    <input type="text" name="key" placeholder="(C, C#, Db, D, D#, Eb, E, F, F#, Gb, G, G#, Ab, A, A#, Bb, B) [C]" class="form-control"
+      value="{{ request.form['key'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="scale">Scale:</label>
+    <input type="text" name="scale" placeholder="(major, minorM, dorian, phrygian, lydian, mixolydian, majorBlues, minorBlues) [major]" class="form-control"
+      value="{{ request.form['scale'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="scaleroot">Scale Root: [4]:</label>
+    <input type="text" name="scaleroot" placeholder="" class="form-control"
+      value="{{ request.form['scaleroot'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="population">Population size: [10]:</label>
+    <input type="text" name="population" placeholder="" class="form-control"
+      value="{{ request.form['population'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="nmutations">Number of mutations: [2]:</label>
+    <input type="text" name="nmutations" placeholder="" class="form-control"
+      value="{{ request.form['nmutations'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="probability">Mutations probability: [0.5]:</label>
+    <input type="text" name="probability" placeholder="" class="form-control"
+      value="{{ request.form['probability'] }}"></input>
+  </div>
+  <div class="form-group">
+    <label for="beats">Beats per minute: [128]:</label>
+    <input type="text" name="beats" placeholder="" class="form-control"
+      value="{{ request.form['beats'] }}"></input>
+  </div>
+  <div class="form-group submit">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+{% endblock %}

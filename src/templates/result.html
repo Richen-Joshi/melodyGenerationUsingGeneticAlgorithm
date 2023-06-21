@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{% block title %}Generated Melodies: {% endblock %}</h1>
+
+<form method="post" action="">
+    <input type="hidden" name="check" value="1">
+    <input type="hidden" name="population" value="{{result}}">
+    <input type="hidden" name="mut" value="{{mut}}">
+    <input type="hidden" name="prob" value="{{prob}}">
+    <input type="hidden" name="nbar" value="{{nbar}}">
+    <input type="hidden" name="notes" value="{{notes}}">
+    <input type="hidden" name="nsteps" value="{{nsteps}}">
+    <input type="hidden" name="pause" value="{{pause}}">
+    <input type="hidden" name="key" value="{{key}}">
+    <input type="hidden" name="scale" value="{{scale}}">
+    <input type="hidden" name="scaleroot" value="{{scaleroot}}">
+    <input type="hidden" name="beats" value="{{beats}}">
+
+<div class="card">
+    <div class="card-header">
+        Generated Music:
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{%for i in range(result)%}
+                <midi-player src="{{ url_for('static', filename=i|string+'.mid') }}" sound-font></midi-player>
+                <div class="form-group">
+                    <label for="rating">Rating (0 - 5)</label>
+                    <input type="range" name="{{i|string}}" min="0" max="5" class="form-control"></input>
+                  </div>
+                  <br>
+                {% endfor %}
+            </p>
+        </blockquote>
+    </div>
+</div>
+<div class="form-group group-form">
+    <button type="submit" class="btn btn-primary">Generate Next</button>
+    <a href="{{url_for('index')}}" class="btn btn-danger ml-3">Exit</a>
+  </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.22.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
+<style>
+    .group-form{
+        margin-top:20px;
+        width:40vw;
+        margin:10px auto;
+    }
+
+    .card,.card-body{
+        width:40vw;
+        margin:0 auto;
+    }
+
+    h1{
+        display: block;
+        width:40vw;
+        margin:10px auto;
+    }
+
+     .form-control{
+        width:100%;
+    }
+</style>
+{% endblock %}
+
